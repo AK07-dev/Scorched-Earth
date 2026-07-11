@@ -1,0 +1,125 @@
+@echo off
+:: ============================================================================
+:: AUTO-ADMIN ELEVATION (Maximized Window Edition)
+:: ============================================================================
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+if '%errorlevel%' NEQ '0' (
+    echo [07-NETWORK] Requesting System Overwrite Privileges...
+    goto UACPrompt
+) else ( goto gotAdmin )
+
+:UACPrompt
+echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+echo UAC.ShellExecute "%~s0", "", "", "runas", 3 >> "%temp%\getadmin.vbs"
+"%temp%\getadmin.vbs"
+del "%temp%\getadmin.vbs"
+exit /B
+
+:gotAdmin
+:: ============================================================================
+:: THE VISUAL INTERFACE (Cinematic 07 Edition)
+:: ============================================================================
+color 0C
+title THE 07 PROTOCOL: SCORCHED EARTH
+
+echo ========================================================================================================================
+echo.
+echo                                        ___ _____ 
+echo                                       / _ \___  ^|   FOR ALL THE 07s
+echo                                      ^| ^| ^| ^| / /    SCORCHED EARTH PROTOCOL INITIATED
+echo                                      ^| ^|_^| ^|/ /     
+echo                                       \___//_/      
+echo.
+echo ========================================================================================================================
+echo.
+
+echo [07-CORE] Step 1: Shielding Windows processes, Anti-Cheats, and GPU Drivers...
+:: Shielded: Vanguard, FaceIT, EAC, FxSound, Snipping Tool, Nvidia/AMD Core.
+powershell -Command "Get-Process | Where-Object { $_.MainWindowTitle -ne '' -and $_.ProcessName -notin @('explorer', 'Taskmgr', 'powershell', 'cmd', 'conhost', 'WindowsTerminal', 'FxSound', 'vgc', 'vgtray', 'RiotClientServices', 'faceit', 'faceitclient', 'EasyAntiCheat', 'beservice', 'SnippingTool', 'nvcontainer', 'RadeonSoftware') } | Stop-Process -Force -ErrorAction SilentlyContinue"
+
+echo.
+echo [07-CORE] Step 2: Neutralizing Gamers', Students', and OEM bloatware...
+
+:: Heavy Browsers
+taskkill /f /im chrome.exe /t >nul 2>&1
+taskkill /f /im msedge.exe /t >nul 2>&1
+taskkill /f /im msedgewebview2.exe /t >nul 2>&1
+taskkill /f /im brave.exe /t >nul 2>&1
+taskkill /f /im firefox.exe /t >nul 2>&1
+
+:: GPU Killers (Wallpaper Engines & Overlays)
+taskkill /f /im wallpaper32.exe /t >nul 2>&1
+taskkill /f /im wallpaper64.exe /t >nul 2>&1
+taskkill /f /im Rainmeter.exe /t >nul 2>&1
+taskkill /f /im Lively.exe /t >nul 2>&1
+taskkill /f /im Overwolf.exe /t >nul 2>&1
+taskkill /f /im CurseForge.exe /t >nul 2>&1
+
+:: Universal Laptop/Desktop OEM Bloat (UI Only, fans/RGB stay active)
+taskkill /f /im LenovoVantage.exe /t >nul 2>&1
+taskkill /f /im ArmouryCrate.exe /t >nul 2>&1
+taskkill /f /im AWCC.exe /t >nul 2>&1
+taskkill /f /im OMENGamingHub.exe /t >nul 2>&1
+taskkill /f /im PredatorSense.exe /t >nul 2>&1
+taskkill /f /im "MSI Center.exe" /t >nul 2>&1
+taskkill /f /im iCUE.exe /t >nul 2>&1
+taskkill /f /im "Razer Synapse.exe" /t >nul 2>&1
+taskkill /f /im lghub.exe /t >nul 2>&1
+taskkill /f /im "NZXT CAM.exe" /t >nul 2>&1
+taskkill /f /im WidgetService.exe /t >nul 2>&1
+taskkill /f /im Widgets.exe /t >nul 2>&1
+
+:: Adobe & Cloud Sync Parasites
+taskkill /f /im "Creative Cloud.exe" /t >nul 2>&1
+taskkill /f /im "Adobe Desktop Service.exe" /t >nul 2>&1
+taskkill /f /im CCXProcess.exe /t >nul 2>&1
+taskkill /f /im CoreSync.exe /t >nul 2>&1
+taskkill /f /im AdobeIPCBroker.exe /t >nul 2>&1
+taskkill /f /im Dropbox.exe /t >nul 2>&1
+taskkill /f /im GoogleDriveFS.exe /t >nul 2>&1
+taskkill /f /im iCloudDrive.exe /t >nul 2>&1
+taskkill /f /im OneDrive.exe /t >nul 2>&1
+
+:: Student & Professional RAM Hogs
+taskkill /f /im Teams.exe /t >nul 2>&1
+taskkill /f /im Zoom.exe /t >nul 2>&1
+taskkill /f /im slack.exe /t >nul 2>&1
+taskkill /f /im WINWORD.EXE /t >nul 2>&1
+taskkill /f /im EXCEL.EXE /t >nul 2>&1
+taskkill /f /im POWERPNT.EXE /t >nul 2>&1
+taskkill /f /im Notion.exe /t >nul 2>&1
+
+:: Idle Game Launchers & Communication
+taskkill /f /im steam.exe /t >nul 2>&1
+taskkill /f /im EpicGamesLauncher.exe /t >nul 2>&1
+taskkill /f /im EADesktop.exe /t >nul 2>&1
+taskkill /f /im WhatsApp.exe /t >nul 2>&1
+taskkill /f /im Telegram.exe /t >nul 2>&1
+taskkill /f /im Signal.exe /t >nul 2>&1
+taskkill /f /im Discord.exe /t >nul 2>&1
+taskkill /f /im Spotify.exe /t >nul 2>&1
+
+echo.
+echo [07-CORE] Step 3: Optimizing System State (Ping Saver & Power Plan)...
+:: Forcing Windows into High-Performance Power Plan
+powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul 2>&1
+
+:: Pausing Windows Update and Background Downloads
+net stop wuauserv /y >nul 2>&1
+net stop bits /y >nul 2>&1
+net stop dosvc /y >nul 2>&1
+
+echo.
+echo [07-CORE] Step 4: Incinerating Temp cache...
+del /q /f /s "%TEMP%\*" >nul 2>&1
+del /q /f /s "C:\Windows\Temp\*" >nul 2>&1
+del /q /f /s "C:\Windows\Prefetch\*" >nul 2>&1
+
+echo.
+echo ========================================================================================================================
+echo [STATUS] SYSTEM IS A GHOST TOWN. HIGH PERFORMANCE POWER PLAN ENGAGED. 
+echo [STATUS] MAXIMUM FPS AND ZERO PING UNLOCKED.
+echo [SUPPORT] Any issues? DM me on Instagram - @im.ak07_
+echo ========================================================================================================================
+echo.
+pause
