@@ -113,9 +113,8 @@ net stop dosvc /y >nul 2>&1
 
 echo.
 echo [07-CORE] Step 4: Incinerating Temp cache...
-del /q /f /s "%TEMP%\*" >nul 2>&1
 del /q /f /s "C:\Windows\Temp\*" >nul 2>&1
-del /q /f /s "C:\Windows\Prefetch\*" >nul 2>&1
+
 
 echo.
 echo ========================================================================================================================
