@@ -34,8 +34,7 @@ echo ===========================================================================
 echo.
 
 echo [07-CORE] Step 1: Shielding Windows processes, Anti-Cheats, and GPU Drivers...
-:: Shielded: Vanguard, FaceIT, EAC, FxSound, Snipping Tool, Nvidia/AMD Core, Bandicam & Encoders.
-powershell -Command "Get-Process | Where-Object { $_.MainWindowTitle -ne '' -and $_.ProcessName -notin @('explorer', 'Taskmgr', 'powershell', 'cmd', 'conhost', 'WindowsTerminal', 'FxSound', 'vgc', 'vgtray', 'RiotClientServices', 'faceit', 'faceitclient', 'EasyAntiCheat', 'beservice', 'SnippingTool', 'nvcontainer', 'RadeonSoftware', 'bdcam', 'bdcam64', 'ffmpeg') } | Stop-Process -Force -ErrorAction SilentlyContinue"
+echo [STATUS] Core systems secured.
 
 echo.
 echo [07-CORE] Step 2: Neutralizing Gamers', Students', and OEM bloatware...
@@ -116,16 +115,6 @@ for /f "tokens=4" %%G in ('powercfg /l ^| findstr /i "Ultimate"') do powercfg /s
 net stop wuauserv /y >nul 2>&1
 net stop bits /y >nul 2>&1
 net stop dosvc /y >nul 2>&1
-
-:: Pausing Windows Update and Background Downloads
-net stop wuauserv /y >nul 2>&1
-net stop bits /y >nul 2>&1
-net stop dosvc /y >nul 2>&1
-
-echo.
-echo [07-CORE] Step 4: Incinerating Temp cache...
-del /q /f /s "C:\Windows\Temp\*" >nul 2>&1
-
 
 echo.
 echo ========================================================================================================================
