@@ -102,19 +102,20 @@ taskkill /f /im Spotify.exe /t >nul 2>&1
 echo.
 echo [07-CORE] Step 3: Optimizing System State (Ping Saver ^& Power Plan Fallback)...
 
-:: First, set High Performance as the baseline fallback
+:: Set High Performance as the baseline fallback first
 powercfg /setactive SCHEME_MIN >nul 2>&1
 
-:: Check if Ultimate Performance already exists in the system
+:: Check if Ultimate Performance exists. If it doesn't, unlock it.
 powercfg /l | findstr /i "Ultimate" >nul
+if %ERRORLEVEL% NEQ 0 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
 
-:: If it does NOT exist, create it and set it active
-if %ERRORLEVEL% NEQ 0 (
-    for /f "tokens=4" %%G in ('powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61') do powercfg /setactive %%G >nul 2>&1
-) else (
-    :: If it DOES exist, find its specific ID and set it active
-    for /f "tokens=3" %%G in ('powercfg /l ^| findstr /i "Ultimate"') do powercfg /setactive %%G >nul 2>&1
-)
+:: Scan the list, grab the exact ID (Token 4), and force activate it
+for /f "tokens=4" %%G in ('powercfg /l ^| findstr /i "Ultimate"') do powercfg /setactive %%G >nul 2>&1
+
+:: Pausing Windows Update and Background Downloads
+net stop wuauserv /y >nul 2>&1
+net stop bits /y >nul 2>&1
+net stop dosvc /y >nul 2>&1
 
 :: Pausing Windows Update and Background Downloads
 net stop wuauserv /y >nul 2>&1
