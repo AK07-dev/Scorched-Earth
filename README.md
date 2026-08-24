@@ -7,4 +7,4 @@ Since every PC has different background apps, I've made a detailed video on my Y
 
 ### 🆘 Need Help?
 If anything crashes or you face an error, DM me on Instagram and I’ll help you troubleshoot it:
-[📸 @im.ak07_](https://www.instagram.com/im.ak07_/)
+[📸 @theak07_](https://www.instagram.com/theak07_/)
