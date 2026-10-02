@@ -120,7 +120,7 @@ echo.
 echo ========================================================================================================================
 echo [STATUS] SYSTEM IS A GHOST TOWN. ULTIMATE/HIGH PERFORMANCE ENGAGED. 
 echo [STATUS] MAXIMUM FPS AND ZERO PING UNLOCKED.
-echo [SUPPORT] Any issues? DM me on Instagram - @im.ak07_
+echo [SUPPORT] Any issues? DM me on Instagram - @name.ak07
 echo ========================================================================================================================
 echo.
 pause
